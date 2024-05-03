@@ -41,7 +41,10 @@ roslaunch marm_gazebo arm_bringup_moveit.launch
 Insert the lunar surface model into Gazebo. 
 
 To clearly observe the lunar surface model, set the ground_plane to wireframe:
-![image](./ground.png)
+
+
+![Alt text](./ground.png)
+
 
 Run the automatic grabbing script：
 ```
@@ -55,23 +58,28 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
 ## Results
 Automatic grabbing effect：
-![image](./Automatic grabbing effect.png)
+
+![Alt text](./Automatic grabbing effect.png)
 
 
 Controlling the rover to navigate around obstacles：
-![image](./Controlling.png)
+
+![Alt text](./Controlling.png)
 
 
 Successfully reaching the target location：
+
 
 ![Alt text](./reaching.png)
 
 
 Controlling the robotic arm joints via rviz：
 
+
 ![Alt text](./arm joints via rviz.png)
 
 
 Successfully placing the sampled objects：
+
 
 ![Alt text](./placing.png)
