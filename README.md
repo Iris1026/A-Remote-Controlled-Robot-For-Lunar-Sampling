@@ -59,7 +59,7 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ## Results
 Automatic grabbing effect：
 
-![Alt text](./Automatic grabbing effect.png)
+![Alt text](./grabbing.png)
 
 
 Controlling the rover to navigate around obstacles：
@@ -76,7 +76,7 @@ Successfully reaching the target location：
 Controlling the robotic arm joints via rviz：
 
 
-![Alt text](./arm joints via rviz.png)
+![Alt text](./arm.png)
 
 
 Successfully placing the sampled objects：
