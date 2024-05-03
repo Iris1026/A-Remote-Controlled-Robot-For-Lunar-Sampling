@@ -9,15 +9,16 @@ We have developed a robotic simulation environment for lunar sampling based on t
 
 Our testing environment: Ubuntu 20.04
 
-`
-> mkdir -p cakin_ws/src
-> cd catkin_ws/src/
-> git clone https://github.com/Iris1026/A-Remote-Controlled-Robot-For-Lunar-Sampling.git
-> cd  ..
-> catkin_make
-> echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
-> source ~/.bashrc
-`
+```
+mkdir -p cakin_ws/src
+cd catkin_ws/src/
+git clone https://github.com/Iris1026/A-Remote-Controlled-Robot-For-Lunar-Sampling.git
+cd  ..
+catkin_make
+echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
+source ~/.bashrc
+
+```
 > 
 ## Insert lunar surface model
 
