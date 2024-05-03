@@ -9,6 +9,7 @@ We have developed a robotic simulation environment for lunar sampling based on t
 
 Our testing environment: Ubuntu 20.04
 
+`
 > mkdir -p cakin_ws/src
 > cd catkin_ws/src/
 > git clone https://github.com/Iris1026/A-Remote-Controlled-Robot-For-Lunar-Sampling.git
@@ -16,7 +17,8 @@ Our testing environment: Ubuntu 20.04
 > catkin_make
 > echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
 > source ~/.bashrc
-
+`
+> 
 ## Insert lunar surface model
 
 Our lunar surface Model:
@@ -50,13 +52,16 @@ Automatic grabbing effect：
 
 ![Alt text](./Automatic grabbing effect.png)
 
+
 Controlling the rover to navigate around obstacles：
 
 ![Alt text](./Controlling.png)
 
+
 Successfully reaching the target location：
 
 ![Alt text](./reaching.png)
+
 
 Controlling the robotic arm joints via rviz：
 
