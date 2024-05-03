@@ -15,7 +15,7 @@ cd catkin_ws/src/
 git clone https://github.com/Iris1026/A-Remote-Controlled-Robot-For-Lunar-Sampling.git
 cd  ..
 catkin_make
-echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
+echo "source /home/XXX/catkin_ws/devel/set up.bash">> ˜/.bashrc
 source ~/.bashrc
 ```
 > 
