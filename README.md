@@ -6,6 +6,7 @@
 We have developed a robotic simulation environment for lunar sampling based on the ROS platform. This environment initially includes models of the lunar surface terrain, sampling objects, a lunar sampling car, and a robotic arm. These models are integrated into Gazebo for 3D dynamic simulation. Subsequently, we simulate the automatic sampling process of the rover. The final step involves controlling the rover to move to a designated point and place the sampled objects. The entire sampling experiment is conducted through joint simulation using both rviz and Gazebo. Additionally, we use Blender to create the simulated lunar surface environment.
 
 ## Build on ROS
+
 Our testing environment: Ubuntu 20.04
 > mkdir -p cakin_ws/src
 > cd catkin_ws/src/
@@ -15,7 +16,7 @@ Our testing environment: Ubuntu 20.04
 > echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
 > source ~/.bashrc
 
-##Insert lunar surface model
+## Insert lunar surface model
 
 Our lunar surface Model:
 ![Alt text](./地形图2.png)
