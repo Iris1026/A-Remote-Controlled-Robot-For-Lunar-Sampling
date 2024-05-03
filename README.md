@@ -17,7 +17,6 @@ cd  ..
 catkin_make
 echo  "source  /home/XXX/catkin_ws/devel/set up.bash">> ˜ / . bashrc
 source ~/.bashrc
-
 ```
 > 
 ## Insert lunar surface model
@@ -34,7 +33,10 @@ If you prefer to customize the terrain, you can download Blender from its offici
 ## Running
 
 Run launch file to start：
+
+```
 >roslaunch marm_gazebo arm_bringup_moveit.launch
+```
 
 Insert the lunar surface model into Gazebo. 
 
@@ -43,10 +45,14 @@ To clearly observe the lunar surface model, set the ground_plane to wireframe:
 ![Alt text](./ground.png)
 
 Run the automatic grabbing script：
+```
 >rosrun function moveit_fk_demo.py
+```
 
 Execute the keyboard control script:
+```
 > rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
 
 ## Results
 Automatic grabbing effect：
