@@ -43,17 +43,17 @@ Execute the keyboard control script:
 
 ## Results
 Automatic grabbing effect：
-![Alt text](./自动抓取效果.png)
+![Alt text](./Automatic grabbing effect.png)
 
 Controlling the rover to navigate around obstacles：
-![Alt text](./键盘控制.png)
+![Alt text](./Controlling.png)
 
 Successfully reaching the target location：
-![Alt text](./到达目标点.png)
+![Alt text](./reaching.png)
 
 Controlling the robotic arm joints via rviz：
-![Alt text](./rviz调整关节.png)
+![Alt text](./arm joints via rviz.png)
 
 
 Successfully placing the sampled objects：
-![Alt text](./放置采样物体.png)
+![Alt text](./placing.png)
