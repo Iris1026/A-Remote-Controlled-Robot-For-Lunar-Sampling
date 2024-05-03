@@ -23,7 +23,7 @@ source ~/.bashrc
 
 Our lunar surface Model:
 
-![Alt text](./lunar surface Model.png)
+![Alt text](./surface.png)
 
 
 We have placed the lunar surface model created with Blender in the folder named "surface_model." If you wish to integrate our pre-made lunar surface terrain into Gazebo, you can refer to the link provided. ：[Enter link here](https://blog.csdn.net/m0_70652514/article/details/131074416?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-4-131074416-blog-124400724.235%5Ev43%5Epc_blog_bottom_relevance_base9&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-4-131074416-blog-124400724.235%5Ev43%5Epc_blog_bottom_relevance_base9&utm_relevant_index=9)
