@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<launch>
+    <node name="robot_pose" pkg="function" type="robot_pose.py" respawn="true" output="screen"/>
+    <node pkg="function" type="waypoint_loader.py" name="waypoint_loader">
+        <param name="path" value="$(find function)/points/waypoints_dake.csv" />
+        <param name="velocity" value="10" />
+    </node>
+    <node pkg="function" type="waypoint_updater.py" name="waypoint_updater" />
+</launch>
