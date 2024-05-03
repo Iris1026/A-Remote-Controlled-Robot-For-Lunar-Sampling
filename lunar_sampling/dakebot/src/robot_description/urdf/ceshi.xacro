@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="robot_name" xmlns:xacro="http://wiki.ros.org/xacro">
+    
+
+<xacro:property name="yaml_file" value="/home/wangdak/myrobot_ws/src/ur_description/config/ur3/joint_limits.yaml" />
+<xacro:property name="temp" value="${xacro.load_yaml(yaml_file)}"/>
+<xacro:property name="val1" value="${temp['joint_limits']['shoulder_pan']}" />
+<xacro:property name="val2" value="${val1['mi_position']}" />
+<link name="link_name">
+    <visual name="">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+            <box size="1.0 1.0 ${val2}"/>
+        </geometry>
+        <material name="">
+            <color rgba="1.0 0.0 0.0 1.0"/>
+            <texture filename=""/>
+        </material>
+    </visual>
+</link>
+</robot>

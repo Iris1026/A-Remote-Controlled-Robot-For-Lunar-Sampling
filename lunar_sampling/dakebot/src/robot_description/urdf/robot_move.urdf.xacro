@@ -1,0 +1,50 @@
+<robot name="my_car_move" xmlns:xacro="http://wiki.ros.org/xacro">
+    
+    <!-- 传动实现:用于连接控制器与关节 -->
+    <xacro:macro name="joint_trans" params="joint_name">
+        <!-- Transmission is important to link the joints and the controller -->
+        <transmission name="${joint_name}_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${joint_name}">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${joint_name}_motor">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <!--每一个驱动轮都需要配置传动装置-->
+    <xacro:joint_trans joint_name="left_front_wheel2robot_base_link" />
+    <xacro:joint_trans joint_name="right_front_wheel2robot_base_link" />
+    <xacro:joint_trans joint_name="left_rear_wheel2robot_base_link" />
+    <xacro:joint_trans joint_name="right_rear_wheel2robot_base_link" />
+    
+    <!-- gazebo四轮差速插件 -->
+    <gazebo>
+        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+            <updateRate>50</updateRate>
+            <robotNamespace>/</robotNamespace>
+            <publishOdomTF>true</publishOdomTF>
+            <publishWheelTF>false</publishWheelTF>
+            <publishTf>1</publishTf>
+            <publishWheelJointState>false</publishWheelJointState>
+            <leftFrontJoint>left_front_wheel2robot_base_link</leftFrontJoint>
+            <rightFrontJoint>right_front_wheel2robot_base_link</rightFrontJoint>
+            <leftRearJoint>left_rear_wheel2robot_base_link</leftRearJoint>
+            <rightRearJoint>right_rear_wheel2robot_base_link</rightRearJoint>
+            <wheelSeparation>${robot_base_link_width}</wheelSeparation>
+            <wheelDiameter>${wheel_radius * 2}</wheelDiameter>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <torque>700</torque>
+            <commandTopic>cmd_vel</commandTopic>
+            <broadcastTF>true</broadcastTF>
+            <odometryFrame>odom</odometryFrame> 
+            <odometryTopic>odom</odometryTopic>
+            <covariance_x>0.000100</covariance_x>
+            <covariance_y>0.000100</covariance_y>
+            <covariance_yaw>0.010000</covariance_yaw>
+        </plugin>
+    </gazebo>
+</robot>

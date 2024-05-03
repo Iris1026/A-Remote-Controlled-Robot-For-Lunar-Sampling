@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot name="robot_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <xacro:property name="PI" value="3.141"/>
+    
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    
+    <xacro:property name="base_footprint_radius" value="0.001" /> 
+    <xacro:property name="robot_base_link_length" value="0.448" /> 
+    <xacro:property name="robot_base_link_width" value="0.300" /> 
+    <xacro:property name="robot_base_link_higth" value="0.120" />
+    <xacro:property name="robot_base_link_mass" value="5" /> 
+    <xacro:property name="earth_space" value="0.056" /> 
+    <xacro:property name="wheel_radius" value="0.056" />
+    <xacro:property name="wheel_length" value="0.028" />
+    <xacro:property name="wheel_mass" value="2" />
+
+    <xacro:macro name="Box_inertial_matrix" params="m l w h">
+       <inertial>
+               <mass value="${m}" />
+               <inertia ixx="${m*(h*h + l*l)/12}" ixy = "0" ixz = "0"
+                   iyy="${m*(w*w + l*l)/12}" iyz= "0"
+                   izz="${m*(w*w + h*h)/12}" />
+       </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="cylinder_inertial_matrix" params="m r h">
+        <inertial>
+            <mass value="${m}" />
+            <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+                iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+                izz="${m*r*r/2}" /> 
+        </inertial>
+    </xacro:macro>
+
+    <!--base_footprint_link-->
+    <link name="base_footprint">
+      <visual>
+        <geometry>
+          <sphere radius="${base_footprint_radius}" />
+        </geometry>
+      </visual>
+    </link>
+    <!--robot_base_link-->
+    <link name="robot_base_link">
+      <visual>
+        <geometry>
+          <box size="${robot_base_link_length} ${robot_base_link_width} ${robot_base_link_higth}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <material name="yellow">
+          <color rgba="1.0 0.5 0.2 1.0" />
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <box size="${robot_base_link_length} ${robot_base_link_width} ${robot_base_link_higth}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+
+      <xacro:Box_inertial_matrix m="${robot_base_link_mass}" l="${robot_base_link_length}" w="${robot_base_link_width}" h="${robot_base_link_higth}" />
+    </link>
+
+    <gazebo reference="robot_base_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <!--base_link joint-->
+    <joint name="link2footprint" type="fixed">
+      <parent link="base_footprint" />
+      <child link="robot_base_link" />
+      <origin xyz="0 0 ${earth_space + robot_base_link_higth / 2 }" />
+    </joint>
+
+
+    <!--wheels_link-->
+    <xacro:macro name="add_front_wheels" params="name flag">
+      
+      <link name="${name}_front_wheel">
+        <visual>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+          </geometry>
+          <origin xyz="0.0 0.0 0.0" rpy="${PI / 2} 0.0 0.0" />
+          <material name="black" />
+        </visual>
+
+        <collision>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+          </geometry>
+          <surface>
+            <friction>
+              <fdir1>1 0 0</fdir1>
+              <kp>1000000.0</kp> <!-- kp and kd for rubber -->
+              <kd>100.0</kd>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <slip1>0.5</slip1>
+              <slip2>0</slip2>
+            </friction>
+          </surface>
+          <origin xyz="0.0 0.0 0.0" rpy="${PI / 2} 0.0 0.0" />
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}" h="${wheel_length}" />
+      </link>
+    
+      <gazebo reference="${name}_front_wheel">
+        <material>Gazebo/Red</material>
+      </gazebo>
+
+      <!--wheels_joint-->
+      <joint name="${name}_front_wheel2robot_base_link" type="continuous">
+        <parent link="robot_base_link" />
+        <child link="${name}_front_wheel" />
+        <origin xyz="${robot_base_link_length / 4} ${flag * robot_base_link_width / 2} ${-1 * robot_base_link_higth / 2}" />
+        <axis xyz="0 1 0" />
+      </joint>
+    </xacro:macro>
+
+    <xacro:macro name="add_rear_wheels" params="name flag">
+      
+      <link name="${name}_rear_wheel">
+        <visual>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+          </geometry>
+          <origin xyz="0.0 0.0 0.0" rpy="${PI / 2} 0.0 0.0" />
+          <material name="black" />
+        </visual>
+
+        <collision>
+          <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+          </geometry>
+          <surface>
+            <friction>
+              <fdir1>1 0 0</fdir1>
+              <kp>1000000.0</kp> <!-- kp and kd for rubber -->
+              <kd>100.0</kd>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <slip1>0.5</slip1>
+              <slip2>0</slip2>
+            </friction>
+          </surface>
+          <origin xyz="0.0 0.0 0.0" rpy="${PI / 2} 0.0 0.0" />
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${wheel_mass}" r="${wheel_radius}" h="${wheel_length}" />
+      </link>
+    
+      <gazebo reference="${name}_rear_wheel">
+        <material>Gazebo/Red</material>
+      </gazebo>
+
+      <!--wheels_joint-->
+      <joint name="${name}_rear_wheel2robot_base_link" type="continuous">
+        <parent link="robot_base_link" />
+        <child link="${name}_rear_wheel" />
+        <origin xyz="${-1 * robot_base_link_length / 4} ${flag * robot_base_link_width / 2} ${-1 * robot_base_link_higth / 2}" />
+        <axis xyz="0 1 0" />
+      </joint>
+    </xacro:macro>
+
+    <xacro:add_front_wheels name="left" flag="1" />
+    <xacro:add_front_wheels name="right" flag="-1" />
+    <xacro:add_rear_wheels name="left" flag="1" />
+    <xacro:add_rear_wheels name="right" flag="-1" />
+
+    <link name="camera">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="0.01 0.25 0.04"/>
+        </geometry>
+        <material name="yellow">
+          <color rgba="1.0 0.5 0.2 1.0" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <box size="0.01 0.25 0.04"/>
+        </geometry>
+      </collision>
+      <xacro:Box_inertial_matrix m="1.0" l="0.01" w="0.25" h="0.04" />
+    </link>
+    <joint name="camera2base" type="fixed">
+      <origin xyz="0.224 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <parent link="robot_base_link"/>
+      <child link="camera"/>
+      <axis xyz="0.0 0.0 0.0"/>
+      <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="hokuyo">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.048" length="0.032"/>
+        </geometry>
+        <material name="black" />
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.048" length="0.032"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertial_matrix m="1.0" r="0.048" h="0.032" />
+    </link>
+    <joint name="hokuyo2base" type="fixed">
+      <origin xyz="0.164 0.0 0.08" rpy="0.0 0.0 0.0"/>
+      <parent link="robot_base_link"/>
+      <child link="hokuyo"/>
+      <axis xyz="0.0 0.0 0.0"/>
+      <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+    </joint>
+
+</robot>
