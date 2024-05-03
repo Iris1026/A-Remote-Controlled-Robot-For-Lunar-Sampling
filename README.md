@@ -56,7 +56,7 @@ Execute the keyboard control script:
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
-## Results
+## Effect
 Automatic grabbing effect：
 
 ![Alt text](./grabbing.png)
