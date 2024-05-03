@@ -17,6 +17,7 @@ cd  ..
 catkin_make
 echo "source /home/XXX/catkin_ws/devel/set up.bash">> ˜/.bashrc
 source ~/.bashrc
+code .
 ```
 > 
 ## Insert lunar surface model
