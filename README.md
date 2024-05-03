@@ -3,7 +3,7 @@
 -------------------
 
 ## Introduction
-We have developed a robotic simulation environment for lunar sampling based on the ROS platform. This environment initially includes models of the lunar surface terrain, sampling objects, a lunar sampling car, and a robotic arm. These models are integrated into Gazebo for 3D dynamic simulation. Subsequently, we simulate the automatic sampling process of the rover. The final step involves controlling the rover to move to a designated point and place the sampled objects. The entire sampling experiment is conducted through joint simulation using both rviz and Gazebo. Additionally, we use Blender to create the simulated lunar surface environment. Our work is based on the respository https://github.com/wdkhx/ros_car_with_arm.
+We have developed a robotic simulation environment for lunar sampling based on the ROS platform. The simulation environment includes models of the lunar surface terrain, sampling objects, a lunar sampling car, and a robotic arm. These models are integrated into Gazebo for 3D dynamic simulation. Subsequently, we simulate the automatic sampling process of the rover. The final step involves controlling the rover to move to a designated point and place the sampled objects. The entire sampling experiment is conducted through joint simulation using both rviz and Gazebo. Additionally, we use Blender to create the simulated lunar surface environment. Our work is based on the respository https://github.com/wdkhx/ros_car_with_arm.
 
 ## Build on ROS
 
